@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUEX - Shop & Learn</title>
+    <style>
+        /* --- CSS Styling --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a237e;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .logo {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 500;
+        }
+
+        .cart-badge {
+            background-color: #ff6f00;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            color: #1a237e;
+            font-size: 28px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 0 20px 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 280px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .price {
+            color: #ff6f00;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #0d1442;
+        }
+
+        .edu-card {
+            border-top: 5px solid #00e676;
+        }
+        
+        .badge-online {
+            background-color: #00e676;
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">RUEX</div>
+        <nav>
+            <a href="#ecommerce">E-Commerce Store</a>
+            <a href="#education">RUEX Online</a>
+            <span class="cart-badge">🛒 Cart: <span id="cart-count">0</span></span>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to RUEX</h1>
+        <p>Shop premium products and elevate your skills with top-tier online classes</p>
+    </section>
+
+    <section id="ecommerce">
+        <h2 class="section-title">RUEX E-Commerce Store</h2>
+        <div class="container">
+            <div class="card">
+                <img src="https://via.placeholder.com/250x150" alt="Study Gadget">
+                <h3>Smart Study Gadget</h3>
+                <p>Track your productivity and manage study hours effortlessly.</p>
+                <div class="price">₹999</div>
+                <button class="btn" onclick="addToCart()">Add to Cart</button>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/250x150" alt="Notebook">
+                <h3>Premium Notebook & Pen</h3>
+                <p>High-quality pages ideal for quick code drafting and sketches.</p>
+                <div class="price">₹499</div>
+                <button class="btn" onclick="addToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">RUEX Online Classes</h2>
+        <div class="container">
+            <div class="card edu-card">
+                <span class="badge-online">RUEX Online</span>
+                <h3>Web Development Masterclass</h3>
+                <p>Learn HTML, CSS, and modern JavaScript completely from scratch.</p>
+                <div class="price">Free / Certificate Included</div>
+                <button class="btn" style="background-color: #00e676; color: black;" onclick="joinCourse('Web Development')">Join Class</button>
+            </div>
+            <div class="card edu-card">
+                <span class="badge-online">RUEX Online</span>
+                <h3>Logical Reasoning & Coding</h3>
+                <p>Build strong logical foundations and learn essential problem-solving skills.</p>
+                <div class="price">Free</div>
+                <button class="btn" style="background-color: #00e676; color: black;" onclick="joinCourse('Logical Reasoning & Coding')">Join Class</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let count = 0;
+
+        function addToCart() {
+            count++;
+            document.getElementById('cart-count').innerText = count;
+            alert('Item successfully added to your RUEX cart!');
+        }
+
+        function joinCourse(courseName) {
+            alert('Congratulations! You have successfully enrolled in the RUEX Online ' + courseName + ' class.');
+        }
+    </script>
+
+</body>
+</html>
+
